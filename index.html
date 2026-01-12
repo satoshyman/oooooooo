@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -11,7 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
 
         :root {
             --ton-blue: #0088CC;
@@ -22,7 +22,7 @@
             background-color: var(--ton-dark);
             color: #fff;
             -webkit-tap-highlight-color: transparent;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Cairo', sans-serif;
             overflow: hidden;
             margin: 0;
             padding: 0;
@@ -50,22 +50,13 @@
 
         .glow-blue { box-shadow: 0 0 20px rgba(0, 136, 204, 0.3); }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        #root { height: 100%; width: 100%; overflow: hidden; }
 
-        #root {
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        @keyframes pulse-soft {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(0.98); }
-        }
-        .animate-pulse-soft { animation: pulse-soft 3s infinite ease-in-out; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .spinner { animation: spin 1s linear infinite; }
     </style>
-<script type="importmap">
+
+    <script type="importmap">
 {
   "imports": {
     "react": "https://esm.sh/react@19.0.0",
@@ -83,12 +74,33 @@
 <body>
     <div class="bg-glow"></div>
     <div id="root">
-        <div style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
-            <div style="width: 40px; height: 40px; border: 3px solid #0088CC; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-            <p style="font-family: sans-serif; font-size: 14px; color: #0088CC;">Loading TON Miner...</p>
+        <div style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px; text-align: center; padding: 20px;">
+            <div class="spinner" style="width: 45px; height: 45px; border: 4px solid rgba(0, 136, 204, 0.1); border-top-color: #0088CC; border-radius: 50%;"></div>
+            <div>
+                <p style="font-weight: 900; color: #0088CC; font-size: 22px; margin: 0; letter-spacing: 1px;">TON MINER</p>
+                <p style="font-size: 14px; color: #64748b; margin-top: 8px;">جاري تشغيل محرك التعدين...</p>
+            </div>
         </div>
     </div>
-    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+
+    <!-- معالج أخطاء متقدم للتشخيص -->
+    <script>
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            const root = document.getElementById('root');
+            if (root) {
+                root.innerHTML = `
+                    <div style="padding: 40px; color: #ef4444; text-align: center; font-family: sans-serif; background: #020617; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="font-size: 50px; margin-bottom: 20px;">⚠️</div>
+                        <h2 style="font-weight: 900; margin: 0;">خطأ في التحميل</h2>
+                        <p style="font-size: 12px; opacity: 0.6; margin-top: 15px; max-width: 300px; word-break: break-all;">${msg}</p>
+                        <button onclick="location.reload()" style="margin-top: 25px; background: #0088CC; color: white; border: none; padding: 12px 30px; border-radius: 12px; font-weight: bold; cursor: pointer;">إعادة المحاولة</button>
+                    </div>
+                `;
+            }
+            return false;
+        };
+    </script>
+
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
