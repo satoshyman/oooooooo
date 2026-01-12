@@ -1,0 +1,7 @@
+{
+  "name": "TON Cloud Miner Premium",
+  "description": "Professional TON cloud mining simulation with ranks, tasks, and instant withdrawals.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
