@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>TON Cloud Miner Premium</title>
+    <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!-- Tailwind CSS (Direct via CDN for simulation) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
@@ -49,36 +51,11 @@
             to { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
         }
 
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
-
         .glass-card {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-        }
-
-        .glow-blue { box-shadow: 0 0 20px rgba(0, 136, 204, 0.4); }
-        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); }
-        .glow-purple { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-
-        @keyframes pulse-ring {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 0; }
-        }
-
-        .pulse-effect::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: inherit;
-            background: inherit;
-            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-            z-index: -1;
         }
 
         #root {
@@ -90,25 +67,24 @@
 <script type="importmap">
 {
   "imports": {
-    "vite": "https://esm.sh/vite@^7.3.1",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
-    "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
     "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
 </head>
 <body>
     <div class="bg-particles">
-        <div class="particle" style="width:100px; height:100px; left:10%; top:80%; animation-delay:0s;"></div>
-        <div class="particle" style="width:150px; height:150px; left:60%; top:40%; animation-delay:2s;"></div>
-        <div class="particle" style="width:80px; height:80px; left:30%; top:20%; animation-delay:5s;"></div>
+        <div class="particle" style="width:100px; height:100px; left:10%; top:80%;"></div>
+        <div class="particle" style="width:150px; height:150px; left:60%; top:40%;"></div>
     </div>
     <div id="root"></div>
     
-    <!-- هذا السطر يربط ملف الـ React الرئيسي ليعمل مع Vite -->
-    <script type="module" src="/index.tsx"></script>
+    <!-- المسار النسبي ضروري جداً هنا ليبدأ React بالعمل -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
