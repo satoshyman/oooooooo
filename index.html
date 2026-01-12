@@ -7,14 +7,19 @@
     <title>TON Cloud Miner Premium</title>
     <!-- Telegram WebApp SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <!-- Tailwind CSS (Direct via CDN for simulation) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+
+        :root {
+            --ton-blue: #0088CC;
+            --ton-dark: #020617;
+        }
 
         body {
-            background-color: #020617;
+            background-color: var(--ton-dark);
             color: #fff;
             -webkit-tap-highlight-color: transparent;
             font-family: 'Inter', sans-serif;
@@ -26,51 +31,49 @@
             position: fixed;
         }
 
-        .bg-particles {
-            position: absolute;
+        .bg-glow {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%);
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(0, 136, 204, 0.3);
-            border-radius: 50%;
-            filter: blur(5px);
-            animation: move-particle 20s infinite linear;
-        }
-
-        @keyframes move-particle {
-            from { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.5; }
-            to { transform: translateY(-100vh) translateX(20vw); opacity: 0; }
+            background: radial-gradient(circle at 50% -20%, #0088cc33 0%, #020617 70%);
         }
 
         .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
+
+        .glow-blue { box-shadow: 0 0 20px rgba(0, 136, 204, 0.3); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
 
         #root {
             height: 100%;
             width: 100%;
             overflow: hidden;
         }
+
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+        }
+        .animate-pulse-soft { animation: pulse-soft 3s infinite ease-in-out; }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.462.0?external=react",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
     "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
     "vite": "https://esm.sh/vite@^7.3.1",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
@@ -78,13 +81,14 @@
 </script>
 </head>
 <body>
-    <div class="bg-particles">
-        <div class="particle" style="width:100px; height:100px; left:10%; top:80%;"></div>
-        <div class="particle" style="width:150px; height:150px; left:60%; top:40%;"></div>
+    <div class="bg-glow"></div>
+    <div id="root">
+        <div style="height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 20px;">
+            <div style="width: 40px; height: 40px; border: 3px solid #0088CC; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+            <p style="font-family: sans-serif; font-size: 14px; color: #0088CC;">Loading TON Miner...</p>
+        </div>
     </div>
-    <div id="root"></div>
-    
-    <!-- المسار النسبي ضروري جداً هنا ليبدأ React بالعمل -->
+    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
     <script type="module" src="./index.tsx"></script>
 </body>
 </html>
