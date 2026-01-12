@@ -11,6 +11,7 @@ interface Props {
 const TasksView: React.FC<Props> = ({ tasks, onComplete }) => {
   const [activeTaskId, setActiveTaskId] = useState<string | null>(null);
 
+  // Fix: Safe access to Telegram WebApp for task verification haptics
   const handleTaskStart = (task: Task) => {
     if (task.completed) return;
     
