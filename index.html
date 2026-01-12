@@ -86,6 +86,7 @@
     <!-- معالج أخطاء متقدم للتشخيص -->
     <script>
         window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Window Error:', msg, url, lineNo);
             const root = document.getElementById('root');
             if (root) {
                 root.innerHTML = `
