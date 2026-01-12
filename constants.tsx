@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Pickaxe, Users, ClipboardList, Settings, PlayCircle, ExternalLink, Zap, MousePointerClick, Heart, Send } from 'lucide-react';
-import { Task, View } from './types';
+import { Task, View } from './types.ts';
 
 export const INITIAL_TASKS: Task[] = [
   { 
