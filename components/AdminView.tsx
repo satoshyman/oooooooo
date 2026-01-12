@@ -29,6 +29,7 @@ const AdminView: React.FC<Props> = ({ state, onUpdateConfig, onUpdateMonetizatio
   const [balanceAmt, setBalanceAmt] = useState("");
   const [expandedSection, setExpandedSection] = useState<string | null>("cards");
 
+  // Fix: Safe Telegram WebApp access for saving configuration
   const saveAll = () => {
     const finalConfig: AppConfig = {
       ...state.config,
@@ -242,7 +243,7 @@ const AdminView: React.FC<Props> = ({ state, onUpdateConfig, onUpdateMonetizatio
                     value={task.url} 
                     onChange={e => handleTaskUpdate(idx, 'url', e.target.value)}
                     className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-4 text-xs text-blue-400 outline-none focus:border-blue-400" 
-                  />
+                />
                 </div>
               </div>
             </div>
