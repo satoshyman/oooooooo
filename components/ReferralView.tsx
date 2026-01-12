@@ -13,6 +13,7 @@ const ReferralView: React.FC<Props> = ({ referrals, code }) => {
   const referralLink = `https://t.me/${botUsername}/start?startapp=${code}`;
   const shareText = `💎 Start mining TON for free on Telegram! Join me and get an instant bonus. Registration link: ${referralLink}`;
 
+  // Fix: Safe access to Telegram WebApp for copying and alerts
   const copyToClipboard = () => {
     navigator.clipboard.writeText(referralLink);
     if (window.Telegram?.WebApp) {
@@ -21,6 +22,7 @@ const ReferralView: React.FC<Props> = ({ referrals, code }) => {
     }
   };
 
+  // Fix: Safe access to Telegram WebApp for opening share links
   const handleInvite = () => {
     if (window.Telegram?.WebApp) {
       window.Telegram.WebApp.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralLink)}&text=${encodeURIComponent(shareText)}`);
